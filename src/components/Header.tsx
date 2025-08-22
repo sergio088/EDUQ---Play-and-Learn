@@ -1,11 +1,24 @@
+"use client";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 export default function Header() {
+  const path = usePathname();
+  const isHome = path === "/";
+
   return (
-    <header className="fixed inset-x-0 top-0 z-50">
+    <header
+      className={`fixed inset-x-0 top-0 z-50 ${
+        isHome ? "bg-transparent" : "bg-orange-300"
+      }`}
+    >
       {/* Gradiente discreto para legibilidade sobre a foto */}
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/60 to-transparent" />
+      <div
+        className={`pointer-events-none absolute inset-0 bg-gradient-to-b ${
+          isHome ? "from-black/60" : "from-orange-400/60"
+        }  to-transparent`}
+      />
 
       <div className="relative mx-auto max-w-7xl px-6 py-4 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-3">
