@@ -3,6 +3,8 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 
+import ButtonWinScreen from "../buttonWinScreen";
+
 interface Card {
   id: number;
   image: string;
@@ -13,9 +15,10 @@ interface Card {
 interface MemoryGameProps {
   images: string[]; // array de strings, cada string é o caminho da imagem em /public
   idade: string;
+  exit: () => void;
 }
 
-export default function MemoryGame({ images, idade }: MemoryGameProps) {
+export default function MemoryGame({ images, idade, exit }: MemoryGameProps) {
   const [cards, setCards] = useState<Card[]>([]);
   const [flipped, setFlipped] = useState<number[]>([]);
   const [matchedCount, setMatchedCount] = useState(0);
@@ -69,6 +72,7 @@ export default function MemoryGame({ images, idade }: MemoryGameProps) {
       setFlipped([]); // reseta cartas viradas
     }
   }
+  function Embaralhar() {}
 
   return (
     <div className="flex flex-col justify-center items-center gap-4">
@@ -104,7 +108,73 @@ export default function MemoryGame({ images, idade }: MemoryGameProps) {
       </div>
 
       {matchedCount === cards.length / 2 && (
-        <p className="text-green-600 font-semibold">Você venceu!</p>
+        <div className="fixed inset-0 z-[999] flex justify-center items-center bg-black/50">
+          <div className="bg-pink-100 rounded-2xl shadow-xl flex items-center gap-6 p-6">
+            {/* Imagem da medalha */}
+            <Image
+              src="/Medalha-nobg.png"
+              alt="imagem de medalha"
+              width={250}
+              height={250}
+            />
+
+            {/* Texto e botões */}
+            <div className="flex flex-col items-center gap-4">
+              <h1 className="text-black font-bold text-center text-lg">
+                PARABÉNS!
+                <br />
+                VOCÊ USOU SUA MEMÓRIA COMO UM VERDADEIRO CAMPEÃO!
+              </h1>
+
+              <ButtonWinScreen
+                onclick={Embaralhar}
+                bg="bg-green-400 hover:bg-green-600"
+                txt="Jogar Novamente"
+                img={
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="lucide text-black lucide-rotate-cw-icon lucide-rotate-cw"
+                  >
+                    <path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8" />
+                    <path d="M21 3v5h-5" />
+                  </svg>
+                }
+              />
+
+              <ButtonWinScreen
+                onclick={() => exit}
+                txt="Sair"
+                bg="bg-red-500 hover:bg-red-600"
+                img={
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="lucide lucide-log-out-icon lucide-log-out"
+                  >
+                    <path d="m16 17 5-5-5-5" />
+                    <path d="M21 12H9" />
+                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+                  </svg>
+                }
+              />
+            </div>
+          </div>
+        </div>
       )}
     </div>
   );

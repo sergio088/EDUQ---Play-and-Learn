@@ -18,6 +18,9 @@ export default function HomeGame() {
     setTemaJogo(valor);
     setFase("Joga da Memoria"); // avança para o jogo final
   }
+  const resetGame = () => {
+    setFase("Seleçao Idade");
+  };
 
   return (
     <div className="bg-pink-100 flex flex-col items-center min-h-screen">
@@ -110,6 +113,7 @@ export default function HomeGame() {
       >
         {temaJogo === "Animais" && (
           <MemoryGame
+            exit={resetGame}
             idade={idade}
             images={[
               "/Cartas Animais/Carta_Cachorro.png",
@@ -127,6 +131,7 @@ export default function HomeGame() {
         )}
         {temaJogo === "Bandeiras" && (
           <MemoryGame
+            exit={resetGame}
             idade={idade}
             images={[
               "/Cartas Bandeiras/Carta_Belgica.png",
@@ -144,6 +149,7 @@ export default function HomeGame() {
         )}
         {temaJogo === "Profissões" && (
           <MemoryGame
+            exit={resetGame}
             idade={idade}
             images={[
               "/Cartas Profissões/Carta_Aeromoça.png",
