@@ -12,22 +12,32 @@ interface Card {
 
 interface MemoryGameProps {
   images: string[]; // array de strings, cada string é o caminho da imagem em /public
+  idade: string;
 }
 
-export default function MemoryGame({ images }: MemoryGameProps) {
+export default function MemoryGame({ images, idade }: MemoryGameProps) {
   const [cards, setCards] = useState<Card[]>([]);
   const [flipped, setFlipped] = useState<number[]>([]);
   const [matchedCount, setMatchedCount] = useState(0);
 
   // quando o componente monta → embaralhar cartas
   useEffect(() => {
-    const duplicated = [...images, ...images]; // duplica pq cada carta tem par
+    let selectedImages: string[] = [];
+
+    if (idade === "5 - 6") {
+      selectedImages = images.slice(0, 6); // pega 6 imagens
+    } else if (idade === "7 - 8") {
+      selectedImages = images.slice(0, 12); // pega 12 imagens
+    } else if (idade === "9 - 10") {
+      selectedImages = images; // todas
+    }
+    const duplicated = [...selectedImages, ...selectedImages]; // duplica pq cada carta tem par
     const shuffled = duplicated
       .map((img, i) => ({ id: i, image: img, flipped: false, matched: false }))
       .sort(() => Math.random() - 0.5);
 
     setCards(shuffled);
-  }, [images]);
+  }, [idade, images]);
 
   function handleClick(index: number) {
     // se já está virada ou combinada, ignora
@@ -64,7 +74,11 @@ export default function MemoryGame({ images }: MemoryGameProps) {
     <div className="flex flex-col justify-center items-center gap-4">
       <h1 className="text-xl font-bold text-black">Jogo da Memória</h1>
 
-      <div className="grid grid-cols-5 gap-2">
+      <div
+        className={`grid ${
+          idade === "5 - 6" ? "grid-cols-4" : "grid-cols-6"
+        } gap-2`}
+      >
         {cards.map((card, index) => (
           <div key={card.id} onClick={() => handleClick(index)}>
             {card.flipped || card.matched ? (
@@ -89,7 +103,7 @@ export default function MemoryGame({ images }: MemoryGameProps) {
         ))}
       </div>
 
-      {matchedCount === images.length && (
+      {matchedCount === cards.length / 2 && (
         <p className="text-green-600 font-semibold">Você venceu!</p>
       )}
     </div>

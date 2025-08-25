@@ -53,17 +53,17 @@ export default function HomeGame() {
           {/* Botões */}
           <div className="flex flex-col gap-6 order-2 sm:order-2">
             <ButtonIdade
-              onClick={() => handleSelectIdade("5-6")}
+              onClick={() => handleSelectIdade("5 - 6")}
               txt="5 - 6"
               bg="bg-yellow-300 hover:bg-yellow-400"
             />
             <ButtonIdade
-              onClick={() => handleSelectIdade("7-8")}
+              onClick={() => handleSelectIdade("7 - 8")}
               txt="7 - 8"
               bg="bg-green-500 hover:bg-green-600"
             />
             <ButtonIdade
-              onClick={() => handleSelectIdade("9-10")}
+              onClick={() => handleSelectIdade("9 - 10")}
               txt="9 - 10"
               bg="bg-blue-500 hover:bg-blue-600"
             />
@@ -110,6 +110,7 @@ export default function HomeGame() {
       >
         {temaJogo === "Animais" && (
           <MemoryGame
+            idade={idade}
             images={[
               "/Cartas Animais/Carta_Cachorro.png",
               "/Cartas Animais/Carta_Cavalo.png",
@@ -126,6 +127,7 @@ export default function HomeGame() {
         )}
         {temaJogo === "Bandeiras" && (
           <MemoryGame
+            idade={idade}
             images={[
               "/Cartas Bandeiras/Carta_Belgica.png",
               "/Cartas Bandeiras/Carta_Brasil.png",
@@ -142,6 +144,7 @@ export default function HomeGame() {
         )}
         {temaJogo === "Profissões" && (
           <MemoryGame
+            idade={idade}
             images={[
               "/Cartas Profissões/Carta_Aeromoça.png",
               "/Cartas Profissões/Carta_Ag.png",
