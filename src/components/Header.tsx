@@ -33,7 +33,7 @@ export default function Header() {
 
         <nav className="flex items-center gap-8 text-white/90">
           <Link
-            href="/"
+            href="/home"
             className="hover:text-white font-medium transition-colors"
           >
             Home
