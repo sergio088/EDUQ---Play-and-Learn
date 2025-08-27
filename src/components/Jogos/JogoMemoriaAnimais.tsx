@@ -122,22 +122,23 @@ export default function MemoryGame({
           <div key={card.id} onClick={() => handleClick(index)}>
             {card.flipped || card.matched ? (
               // <img src={card.image} alt="carta" className="w-16 h-16" />
-              <Image
+              <img
                 src={card.image}
                 alt="carta"
                 width={tamanhoCarta}
                 height={tamanhoCarta}
-                unoptimized
-                priority={false}
-              ></Image>
+                decoding="async"
+                loading="lazy"
+                draggable={false}
+              ></img>
             ) : (
               <div>
-                <Image
+                <img
                   src="/Carta-Costas.png"
                   alt="Verso da carta"
                   width={tamanhoCarta}
                   height={tamanhoCarta}
-                ></Image>
+                ></img>
               </div>
             )}
           </div>

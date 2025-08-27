@@ -1,9 +1,9 @@
 "use client";
-import Image from "next/image";
 import ButtonIdade from "@/components/buttonIdade";
-import Link from "next/link";
 import { useState } from "react";
 import MemoryGame from "@/components/Jogos/JogoMemoriaAnimais";
+import Image from "next/image";
+
 export default function HomeGame() {
   const [fase, setFase] = useState("Seleçao Idade");
   const [idade, setIdade] = useState("");
@@ -25,8 +25,11 @@ export default function HomeGame() {
   return (
     <div className="flex flex-col items-center min-h-screen">
       {/* BG-Image */}
-      <div className="fixed top-0 left-0 w-full h-full -z-10 bg-[url('/bg_cleanup.png')] bg-cover bg-no-repeat bg-center" />
-
+      <img
+        src="/bg_cleanup.png"
+        alt="bg"
+        className="fixed top-0 left-0 w-full h-full -z-10 bg-cover bg-no-repeat bg-center"
+      />
       {/* SECTION 2 - SELEÇÃO DE IDADE */}
       <section
         id="idade"
