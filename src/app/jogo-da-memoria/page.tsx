@@ -73,9 +73,11 @@ export default function HomeGame() {
       </section>
 
       {/* SECTION 3 - SELEÇÃO DE JOGO */}
-      <section className={`${fase === "Selecao Jogo" ? "" : "hidden"} w-full`}>
+      <section
+        className={`${fase === "Selecao Jogo" ? "" : "hidden"} w-full mt-16`}
+      >
         <div className="flex flex-col sm:flex-row items-center justify-center h-screen px-6 sm:px-20 gap-10">
-          <div className="h-15" />
+          {/* <div className="h-15" /> */}
           {/* Botões */}
           <div className="flex flex-col gap-6 order-2 sm:order-1">
             <ButtonIdade
