@@ -25,7 +25,7 @@ export default function HomeGame() {
   return (
     <div className="flex flex-col items-center min-h-screen">
       {/* BG-Image */}
-      <div className="fixed inset-0 bg-pink-100">
+      <div className="fixed inset-0 -z-10 bg-pink-100">
         <img
           src="/bg_cleanup.png"
           alt="fundo"
