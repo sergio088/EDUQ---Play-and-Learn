@@ -6,7 +6,14 @@ export default function HomeGame() {
   return (
     <div className="flex flex-col items-center min-h-screen">
       {/* SECTION 1 - TÍTULO */}
-      <div className="fixed top-0 left-0 w-full h-full -z-10 bg-[url('/bg_home.png')] bg-cover bg-no-repeat bg-center" />
+
+      <Image
+        src="/bg_home.png"
+        alt="fundo"
+        fill
+        priority
+        className="fixed top-0 left-0 w-full h-full -z-10 bg-cover bg-no-repeat bg-center"
+      />
 
       <section className="flex justify-center items-center h-screen">
         <div className="bg-red-300 p-3 shadow-2xl rounded">
@@ -16,6 +23,7 @@ export default function HomeGame() {
               alt="titulo Jogo da Memoria"
               width={300}
               height={100}
+              priority
             />
           </Link>
         </div>

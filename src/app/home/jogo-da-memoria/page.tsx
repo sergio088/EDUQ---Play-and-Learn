@@ -25,11 +25,14 @@ export default function HomeGame() {
   return (
     <div className="flex flex-col items-center min-h-screen">
       {/* BG-Image */}
-      <img
+      <Image
         src="/bg_cleanup.png"
-        alt="bg"
+        alt="fundo"
+        fill
+        priority
         className="fixed top-0 left-0 w-full h-full -z-10 bg-cover bg-no-repeat bg-center"
       />
+
       {/* SECTION 2 - SELEÇÃO DE IDADE */}
       <section
         id="idade"
@@ -42,6 +45,7 @@ export default function HomeGame() {
             alt="menino pergunta idade"
             width={500}
             height={300}
+            priority
             className="order-1 sm:order-1 w-72 sm:w-[500px]"
           />
 
@@ -94,6 +98,7 @@ export default function HomeGame() {
             alt="menino pergunta qual jogo"
             width={500}
             height={300}
+            priority
             className="order-1 sm:order-2 w-72 sm:w-[500px]"
           />
         </div>
