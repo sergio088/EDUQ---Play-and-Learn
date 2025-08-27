@@ -15,7 +15,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-BR">
-      <body className="min-h-dvh bg-neutral-950 text-white antialiased selection:bg-fuchsia-500/30">
+      {/* className="fixed top-0 left-0 w-full h-full -z-10 bg-[url('/bg.png')] bg-cover bg-no-repeat bg-center" */}
+      <body className="min-h-dvh bg-neutral-950 text-white antialiased selection:bg-fuchsia-500/30 ">
         {/* Cabeçalho global */}
         <Header />
         {/* Conteúdo das páginas */}

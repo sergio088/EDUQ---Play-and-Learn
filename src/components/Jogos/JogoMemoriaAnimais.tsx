@@ -16,22 +16,32 @@ interface MemoryGameProps {
   images: string[]; // array de strings, cada string é o caminho da imagem em /public
   idade: string;
   exit: () => void;
+  Tema: string;
 }
 
-export default function MemoryGame({ images, idade, exit }: MemoryGameProps) {
+export default function MemoryGame({
+  images,
+  idade,
+  exit,
+  Tema,
+}: MemoryGameProps) {
   const [cards, setCards] = useState<Card[]>([]);
   const [flipped, setFlipped] = useState<number[]>([]);
   const [matchedCount, setMatchedCount] = useState(0);
+  const [tamanhoCarta, setTamanhoCarta] = useState(0);
 
   // quando o componente monta → embaralhar cartas
   useEffect(() => {
     let selectedImages: string[] = [];
 
     if (idade === "5 - 6") {
+      setTamanhoCarta(150);
       selectedImages = images.slice(0, 6); // pega 6 imagens
     } else if (idade === "7 - 8") {
+      setTamanhoCarta(120);
       selectedImages = images.slice(0, 12); // pega 12 imagens
     } else if (idade === "9 - 10") {
+      setTamanhoCarta(90);
       selectedImages = images; // todas
     }
     const duplicated = [...selectedImages, ...selectedImages]; // duplica pq cada carta tem par
@@ -72,11 +82,36 @@ export default function MemoryGame({ images, idade, exit }: MemoryGameProps) {
       setFlipped([]); // reseta cartas viradas
     }
   }
-  function Embaralhar() {}
+  function Embaralhar() {
+    let selectedImages: string[] = [];
+
+    if (idade === "5 - 6") {
+      selectedImages = images.slice(0, 6); // pega 6 imagens
+    } else if (idade === "7 - 8") {
+      selectedImages = images.slice(0, 12); // pega 12 imagens
+    } else if (idade === "9 - 10") {
+      selectedImages = images; // todas
+    }
+    setMatchedCount(0);
+    const duplicated = [...selectedImages, ...selectedImages]; // duplica pq cada carta tem par
+    const shuffled = duplicated
+      .map((img, i) => ({ id: i, image: img, flipped: false, matched: false }))
+      .sort(() => Math.random() - 0.5);
+
+    setCards(shuffled);
+  }
+  const resetState = () => {
+    setMatchedCount(0);
+  };
 
   return (
-    <div className="flex flex-col justify-center items-center gap-4">
-      <h1 className="text-xl font-bold text-black">Jogo da Memória</h1>
+    <div className="flex flex-col justify-center items-center gap-2">
+      <div className="h-15" />
+      <h1 className="text-xl font-bold text-black bg-orange-400/60 w-[50%] h-10 flex justify-center items-center">
+        {Tema}
+      </h1>
+
+      <div></div>
 
       <div
         className={`grid ${
@@ -90,16 +125,16 @@ export default function MemoryGame({ images, idade, exit }: MemoryGameProps) {
               <Image
                 src={card.image}
                 alt="carta"
-                width={150}
-                height={150}
+                width={tamanhoCarta}
+                height={tamanhoCarta}
               ></Image>
             ) : (
               <div>
                 <Image
                   src="/Carta-Costas.png"
                   alt="Verso da carta"
-                  width={150}
-                  height={150}
+                  width={tamanhoCarta}
+                  height={tamanhoCarta}
                 ></Image>
               </div>
             )}
@@ -109,7 +144,16 @@ export default function MemoryGame({ images, idade, exit }: MemoryGameProps) {
 
       {matchedCount === cards.length / 2 && (
         <div className="fixed inset-0 z-[999] flex justify-center items-center bg-black/50">
-          <div className="bg-pink-100 rounded-2xl shadow-xl flex items-center gap-6 p-6">
+          <div className="rounded-2xl shadow-xl flex flex-col sm:flex-row items-center gap-6 p-6 ">
+            <div className="absolute inset-0 -z-10 bg-[url('/bg_cleanup.png')] bg-cover bg-no-repeat bg-center" />
+            <Image
+              src="/bixinho-azul-nobg.png"
+              alt="bixinho azul"
+              width={200}
+              height={200}
+              className="fixed top-0 sm:left-[45%]"
+            ></Image>
+
             {/* Imagem da medalha */}
             <Image
               src="/Medalha-nobg.png"
@@ -150,7 +194,10 @@ export default function MemoryGame({ images, idade, exit }: MemoryGameProps) {
               />
 
               <ButtonWinScreen
-                onclick={() => exit}
+                onclick={() => {
+                  exit();
+                  resetState();
+                }}
                 txt="Sair"
                 bg="bg-red-500 hover:bg-red-600"
                 img={
