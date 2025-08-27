@@ -1,50 +1,35 @@
+"use client";
+import Link from "next/link";
 import Image from "next/image";
 
-export default function Home() {
+export default function HomeGame() {
   return (
-    <div className="relative min-h-[100svh] flex items-center">
-      {/* Bg image full-bleed */}
+    <div className="flex flex-col items-center min-h-screen">
+      {/* SECTION 1 - TÍTULO */}
+
       <div className="fixed inset-0 -z-10 bg-pink-100">
         <img
-          src="/Foto Crianças.png"
-          alt="Crianças brincando na grama"
-          sizes="100vw"
+          src="/bg_home.png"
+          alt="bg"
           className="fixed top-0 left-0 w-full h-full -z-10 bg-cover bg-no-repeat bg-center"
           loading="eager"
           decoding="async"
         />
       </div>
 
-      {/* Overlay para legibilidade */}
-      <div className="absolute inset-0 bg-black/55 -z-10" />
-
-      <div className="relative z-10 mx-auto max-w-7xl w-full px-6 sm:px-12 flex flex-col items-start gap-6">
-        {/* Logo PLAY_AND_LEARN */}
-        <div className="flex justify-center  w-full py-6 sm:py-10">
-          <Image
-            src="/play-and-learn-TITULO-nobg.png"
-            alt="play and learn estilo massinha"
-            width={600} // largura máxima
-            height={200} // altura máxima
-            className="object-contain w-[250px] sm:w-[400px] md:w-[500px] lg:w-[600px] h-auto"
-            priority
-          />
+      <section className="flex justify-center items-center h-screen">
+        <div className="bg-red-500 p-3 shadow-2xl rounded">
+          <Link href="/jogo-da-memoria">
+            <Image
+              src="/TITULO-jogo-da-memoria-nobg.png"
+              alt="titulo Jogo da Memoria"
+              width={300}
+              height={100}
+              priority
+            />
+          </Link>
         </div>
-
-        {/* Texto/CTA */}
-        <div className="max-w-2xl text-center sm:text-left">
-          <p className="text-lg font-semibold text-amber-300">
-            Diversão que ensina, aprendizado que encanta!
-          </p>
-
-          <p className="mt-4 text-[18px] sm:text-[20px] text-white/90 leading-relaxed">
-            Transformamos o aprendizado em uma experiência divertida e
-            interativa através do ensino gamificado, combinamos desafios e
-            atividades envolventes para estimular a curiosidade e o
-            desenvolvimento intelectual dos pequenos.
-          </p>
-        </div>
-      </div>
+      </section>
     </div>
   );
 }

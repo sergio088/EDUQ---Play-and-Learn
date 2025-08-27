@@ -75,6 +75,7 @@ export default function HomeGame() {
       {/* SECTION 3 - SELEÇÃO DE JOGO */}
       <section className={`${fase === "Selecao Jogo" ? "" : "hidden"} w-full`}>
         <div className="flex flex-col sm:flex-row items-center justify-center h-screen px-6 sm:px-20 gap-10">
+          <div className="sm:h-15" />
           {/* Botões */}
           <div className="flex flex-col gap-6 order-2 sm:order-1">
             <ButtonIdade
@@ -180,12 +181,12 @@ export default function HomeGame() {
               "/Cartas Profissões/Carta_Concierge.png",
               "/Cartas Profissões/Carta_Detetive.png",
               "/Cartas Profissões/Carta_Entregador.png",
-              "/Cartas Profissões/Carta_Jornalista.png",
+              "/Cartas Profissões/Carta_Mergulhador.png",
               "/Cartas Profissões/Carta_Juiz.png",
               "/Cartas Profissões/Carta_Médica.png",
               "/Cartas Profissões/Carta_Piloto.png",
               "/Cartas Profissões/Carta_Policial.png",
-              "/Cartas Profissões/Carta_Porteiro.png",
+              "/Cartas Profissões/Carta_Professor.png",
               "/Cartas Profissões/Carta_Soldado.png",
               "/Cartas Profissões/Carta_Taxista.png",
             ]}

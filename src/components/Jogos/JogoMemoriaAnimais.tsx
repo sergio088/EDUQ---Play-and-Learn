@@ -28,20 +28,16 @@ export default function MemoryGame({
   const [cards, setCards] = useState<Card[]>([]);
   const [flipped, setFlipped] = useState<number[]>([]);
   const [matchedCount, setMatchedCount] = useState(0);
-  const [tamanhoCarta, setTamanhoCarta] = useState(0);
 
   // quando o componente monta → embaralhar cartas
   useEffect(() => {
     let selectedImages: string[] = [];
 
     if (idade === "5 - 6") {
-      setTamanhoCarta(150);
       selectedImages = images.slice(0, 6); // pega 6 imagens
     } else if (idade === "7 - 8") {
-      setTamanhoCarta(120);
       selectedImages = images.slice(0, 12); // pega 12 imagens
     } else if (idade === "9 - 10") {
-      setTamanhoCarta(90);
       selectedImages = images; // todas
     }
     const duplicated = [...selectedImages, ...selectedImages]; // duplica pq cada carta tem par
@@ -116,30 +112,27 @@ export default function MemoryGame({
       <div
         className={`grid ${
           idade === "5 - 6" ? "grid-cols-4" : "grid-cols-6"
-        } gap-2`}
+        } gap-2 w-full lg:w-8/16 max-w-6xl mx-auto`}
       >
         {cards.map((card, index) => (
-          <div key={card.id} onClick={() => handleClick(index)}>
+          <div
+            key={card.id}
+            onClick={() => handleClick(index)}
+            className="aspect-square w-full cursor-pointer"
+          >
             {card.flipped || card.matched ? (
-              // <img src={card.image} alt="carta" className="w-16 h-16" />
               <img
                 src={card.image}
                 alt="carta"
-                width={tamanhoCarta}
-                height={tamanhoCarta}
-                decoding="async"
-                loading="lazy"
+                className="w-full h-full object-contain"
                 draggable={false}
-              ></img>
+              />
             ) : (
-              <div>
-                <img
-                  src="/Carta-Costas.png"
-                  alt="Verso da carta"
-                  width={tamanhoCarta}
-                  height={tamanhoCarta}
-                ></img>
-              </div>
+              <img
+                src="/Carta-Costas.png"
+                alt="Verso da carta"
+                className="w-full h-full object-contain"
+              />
             )}
           </div>
         ))}

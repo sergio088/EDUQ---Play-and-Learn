@@ -5,19 +5,19 @@ import { usePathname } from "next/navigation";
 
 export default function Header() {
   const path = usePathname();
-  const isInicio = path === "/";
-  const isHome = path === "/home" || path === "/home/jogo-da-memoria";
+  const isInicio = path === "/" || path === "/jogo-da-memoria";
+  const isHome = path === "/home";
 
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 ${
-        isInicio ? "bg-transparent" : "bg-orange-300"
+        isHome ? "bg-transparent" : "bg-orange-300"
       }`}
     >
       {/* Gradiente discreto para legibilidade sobre a foto */}
       <div
         className={`pointer-events-none absolute inset-0 bg-gradient-to-b ${
-          isInicio ? "from-black/60" : "from-orange-400/60"
+          isHome ? "from-black/60" : "from-orange-400/60"
         }  to-transparent`}
       />
 
@@ -39,7 +39,7 @@ export default function Header() {
           height={100}
           priority
           className={`fixed top-0 left-1/2 -translate-x-1/2 z-[60] px-3 sm:px-0 ${
-            isHome ? "" : "hidden"
+            isInicio ? "" : "hidden"
           }`}
         />
 
