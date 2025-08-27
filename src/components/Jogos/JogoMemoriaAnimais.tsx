@@ -127,6 +127,8 @@ export default function MemoryGame({
                 alt="carta"
                 width={tamanhoCarta}
                 height={tamanhoCarta}
+                unoptimized
+                priority={false}
               ></Image>
             ) : (
               <div>
