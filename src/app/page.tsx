@@ -4,14 +4,16 @@ export default function Home() {
   return (
     <div className="relative min-h-[100svh] flex items-center">
       {/* Bg image full-bleed */}
-      <Image
-        src="/Foto Crianças.png"
-        alt="Crianças brincando na grama"
-        fill
-        priority
-        sizes="100vw"
-        className="object-cover -z-10"
-      />
+      <div className="fixed inset-0 -z-10 bg-pink-100">
+        <img
+          src="/Foto Crianças.png"
+          alt="Crianças brincando na grama"
+          sizes="100vw"
+          className="fixed top-0 left-0 w-full h-full -z-10 bg-cover bg-no-repeat bg-center"
+          loading="eager"
+          decoding="async"
+        />
+      </div>
 
       {/* Overlay para legibilidade */}
       <div className="absolute inset-0 bg-black/55 -z-10" />
