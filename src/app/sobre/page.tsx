@@ -5,12 +5,17 @@ export default function Sobre() {
       <div className="bg-pink-100 min-h-screen text-black flex flex-col items-center justify-center px-8 py-12">
         <div className="max-w-6xl w-full flex flex-col lg:flex-row items-start gap-10">
           {/* Imagem + legenda */}
-          <div className="flex flex-col items-center md:items-start">
-            <img
-              src="/equipe.jpg" // aqui você coloca o caminho certo da imagem
-              alt="Equipe Play and Learn"
-              className="rounded-md shadow-md max-w-sm w-full"
-            />
+          <div className="flex flex-col items-center md:items-start w-full max-w-sm">
+            <div className="w-full ">
+              <Image
+                src="/Foto-Equipe.jpg"
+                alt="Equipe Play and Learn"
+                width={800}
+                height={600}
+                quality={80} // controla o "serrilhado"
+                className="rounded-md shadow-md w-full h-auto"
+              />
+            </div>
             <p className="bg-orange-400 text-black text-sm text-center px-4 py-2 w-full mt-2 font-medium">
               Arthur de Paula, Felipe Mansano, Laura Stefanin, Maike Santos e
               Mariana Borsato
